@@ -18,7 +18,7 @@ export function AboutIntro() {
                   src="/images/mary-jane-portrait.png"
                   alt="Mary-Jane — interieurontwerper bij Mary-Jane Design"
                   fill
-                  className="object-cover object-[center_12%] scale-[1.08]"
+                  className="object-cover object-center scale-[1.02]"
                   sizes="(max-width: 640px) 288px, 320px"
                   priority
                 />
