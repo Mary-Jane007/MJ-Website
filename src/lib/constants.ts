@@ -3,7 +3,8 @@ export type PortfolioCategory =
   | "woonkamer"
   | "slaapkamer"
   | "volledig"
-  | "badkamer";
+  | "badkamer"
+  | "keuken";
 
 export type PortfolioProject = {
   id: string;
@@ -12,6 +13,10 @@ export type PortfolioProject = {
   image: string;
   /** Extra beelden op de projectpagina (onder het hoofdbeeld) */
   extraImages?: string[];
+  /**
+   * `true`: eerste extra afbeelding = vóór, `image` = na (vóór/na-sectie op detailpagina).
+   */
+  beforeAfter?: boolean;
   /** Korte intro op de projectpagina */
   summary?: string;
   /** Bulletpunten met ontwerp-highlights */
@@ -129,13 +134,6 @@ export const PORTFOLIO_ITEMS: PortfolioProject[] = [
       "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80",
   },
   {
-    id: "7",
-    title: "Eet- en leefruimte",
-    category: "woonkamer",
-    image:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
-  },
-  {
     id: "8",
     title: "Master bedroom",
     category: "slaapkamer",
@@ -171,6 +169,23 @@ export const PORTFOLIO_ITEMS: PortfolioProject[] = [
       "Zwevende eikenhouten wastafel met open onderblad voor handdoeken en spa-sfeer",
       "Verticaal gestreepte taupe wand achter de wastafel voor tactiele diepte en warm licht",
       "Gelaagde verlichting: lineaire spiegellamp, pendels en sfeervolle pampas als zachte styling",
+    ],
+  },
+  {
+    id: "12",
+    title: "Compacte keuken — renovatie vóór & na",
+    category: "keuken",
+    image: "/images/portfolio/keuken-na.png",
+    extraImages: ["/images/portfolio/keuken-voor.png"],
+    beforeAfter: true,
+    summary:
+      "Van een ruimte in aanbouw — losse leidingen, basisapparatuur en een tijdelijke werkplek — naar een strakke, moderne keuken: warm taupe, greeploze fronten, donker werkblad en een ingebouwde koffiehoek in hout. Het eindbeeld draait om slimme opslag, LED-taakverlichting en een zwart gasfornuis als krachtig middelpunt.",
+    highlights: [
+      "Greeploze taupe fronten met donker werkblad en geïntegreerde greepprofielen voor een rustige lijn",
+      "Houten koffienis met sfeerverlichting, open legplank en plek voor espresso — dagelijks genot in één vak",
+      "Inbouwapparatuur (o.a. koelkast en combimagnetron) netjes verzonken in de kolom",
+      "Onderbouw-LED boven het werkblad voor helder, warm licht bij koken en afwassen",
+      "Verlengd werkblad met barkruk: ontbijtplek zonder extra vierkante meters",
     ],
   },
 ];

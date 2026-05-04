@@ -17,11 +17,23 @@ function categoryLabel(
       return "Slaapkamer";
     case "badkamer":
       return "Badkamer";
+    case "keuken":
+      return "Keuken";
     case "volledig":
       return "Volledig ontwerp";
     default:
       return "Project";
   }
+}
+
+function ctaLabel(category: (typeof PORTFOLIO_ITEMS)[number]["category"]) {
+  if (category === "badkamer") {
+    return "Ook je badkamer of woning laten ontwerpen?";
+  }
+  if (category === "keuken") {
+    return "Ook jouw keuken of woning laten ontwerpen?";
+  }
+  return "Interieurplannen bespreken?";
 }
 
 export function generateStaticParams() {
@@ -46,6 +58,11 @@ export default function PortfolioDetailPage({ params }: Props) {
   if (!project) notFound();
 
   const related = PORTFOLIO_ITEMS.filter((p) => p.id !== id).slice(0, 3);
+
+  const isBeforeAfter =
+    project.beforeAfter === true &&
+    project.extraImages &&
+    project.extraImages.length >= 1;
 
   return (
     <div className="bg-cream pb-20 pt-28">
@@ -73,39 +90,82 @@ export default function PortfolioDetailPage({ params }: Props) {
           )}
         </MotionSection>
 
-        <MotionSection delay={0.08} className="mt-10">
-          <div className="relative aspect-[4/3] overflow-hidden rounded-card-lg">
-            <Image
-              src={project.image}
-              alt={project.title}
-              fill
-              className="object-cover"
-              sizes="(max-width: 896px) 100vw, 896px"
-              priority
-            />
-          </div>
-        </MotionSection>
-
-        {project.extraImages && project.extraImages.length > 0 && (
-          <MotionSection delay={0.09} className="mt-6">
-            <h2 className="sr-only">Meer beelden</h2>
-            <div className="grid gap-4 sm:grid-cols-2">
-              {project.extraImages.map((src, i) => (
-                <div
-                  key={src}
-                  className="relative aspect-[4/3] overflow-hidden rounded-card-lg"
-                >
+        {isBeforeAfter ? (
+          <MotionSection delay={0.08} className="mt-10">
+            <h2 className="font-display text-2xl text-earth">Vóór &amp; na</h2>
+            <p className="mt-2 text-sm text-earth/65">
+              Links de situatie tijdens de verbouwing, rechts het eindresultaat
+              met onder andere het zwarte gasfornuis.
+            </p>
+            <div className="mt-6 grid gap-6 md:grid-cols-2">
+              <figure className="space-y-2">
+                <figcaption className="text-xs font-semibold uppercase tracking-wider text-taupe">
+                  Vóór
+                </figcaption>
+                <div className="relative aspect-[4/3] overflow-hidden rounded-card-lg border border-taupe/15">
                   <Image
-                    src={src}
-                    alt={`${project.title} — beeld ${i + 2}`}
+                    src={project.extraImages![0]}
+                    alt={`${project.title} — situatie vóór renovatie`}
                     fill
                     className="object-cover"
-                    sizes="(max-width: 896px) 100vw, 440px"
+                    sizes="(max-width: 768px) 100vw, 440px"
+                    priority
                   />
                 </div>
-              ))}
+              </figure>
+              <figure className="space-y-2">
+                <figcaption className="text-xs font-semibold uppercase tracking-wider text-blush">
+                  Na
+                </figcaption>
+                <div className="relative aspect-[4/3] overflow-hidden rounded-card-lg border border-taupe/15 shadow-warm">
+                  <Image
+                    src={project.image}
+                    alt={`${project.title} — eindresultaat`}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 440px"
+                  />
+                </div>
+              </figure>
             </div>
           </MotionSection>
+        ) : (
+          <>
+            <MotionSection delay={0.08} className="mt-10">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-card-lg">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 896px) 100vw, 896px"
+                  priority
+                />
+              </div>
+            </MotionSection>
+
+            {project.extraImages && project.extraImages.length > 0 && (
+              <MotionSection delay={0.09} className="mt-6">
+                <h2 className="sr-only">Meer beelden</h2>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {project.extraImages.map((src, i) => (
+                    <div
+                      key={src}
+                      className="relative aspect-[4/3] overflow-hidden rounded-card-lg"
+                    >
+                      <Image
+                        src={src}
+                        alt={`${project.title} — beeld ${i + 2}`}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 896px) 100vw, 440px"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </MotionSection>
+            )}
+          </>
         )}
 
         {project.highlights && project.highlights.length > 0 && (
@@ -155,7 +215,7 @@ export default function PortfolioDetailPage({ params }: Props) {
             href="/contact"
             className="inline-block rounded-card-lg bg-blush px-8 py-3.5 font-medium text-cream transition hover:bg-taupe"
           >
-            Ook je badkamer of woning laten ontwerpen?
+            {ctaLabel(project.category)}
           </Link>
         </MotionSection>
       </div>

@@ -15,6 +15,7 @@ const FILTERS: { key: PortfolioCategory; label: string }[] = [
   { key: "woonkamer", label: "Woonkamer" },
   { key: "slaapkamer", label: "Slaapkamer" },
   { key: "badkamer", label: "Badkamer" },
+  { key: "keuken", label: "Keuken" },
   { key: "volledig", label: "Volledig ontwerp" },
 ];
 
