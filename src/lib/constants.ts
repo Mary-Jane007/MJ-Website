@@ -1,4 +1,20 @@
-export type PortfolioCategory = "alle" | "woonkamer" | "slaapkamer" | "volledig";
+export type PortfolioCategory =
+  | "alle"
+  | "woonkamer"
+  | "slaapkamer"
+  | "volledig"
+  | "badkamer";
+
+export type PortfolioProject = {
+  id: string;
+  title: string;
+  category: Exclude<PortfolioCategory, "alle">;
+  image: string;
+  /** Korte intro op de projectpagina */
+  summary?: string;
+  /** Bulletpunten met ontwerp-highlights */
+  highlights?: string[];
+};
 
 const facebookFromEnv = process.env.NEXT_PUBLIC_FACEBOOK_URL?.trim();
 
@@ -74,12 +90,7 @@ export const SERVICE_DETAILS = SERVICES.map((s) => ({
             : "Een goed indelingsplan bespaart frustratie en ruimte. Ik teken opties, adviseer over stromen en licht, en kan optioneel meelopen tijdens de bouw- of renovatiefase.",
 }));
 
-export const PORTFOLIO_ITEMS: {
-  id: string;
-  title: string;
-  category: Exclude<PortfolioCategory, "alle">;
-  image: string;
-}[] = [
+export const PORTFOLIO_ITEMS: PortfolioProject[] = [
   {
     id: "1",
     title: "Warme woonkamer",
@@ -137,10 +148,18 @@ export const PORTFOLIO_ITEMS: {
       "https://images.unsplash.com/photo-1505693416389-b9b2bbd783d?w=800&q=80",
   },
   {
-    id: "9",
-    title: "Design tot in detail",
-    category: "volledig",
-    image:
-      "https://images.unsplash.com/photo-1600121848594-d8644e57abab?w=800&q=80",
+    id: "10",
+    title: "Modern Zen badkamer",
+    category: "badkamer",
+    image: "/images/portfolio/modern-zen-badkamer.png",
+    summary:
+      "Een compacte badkamer omgetoverd tot een rustig, luxe toevluchtsoord: diep matzwart als canvas, zacht saliegroen als accent en warm hout voor balans. Het resultaat voelt strak én ontspannen — alsof je elke dag een klein spa-moment cadeau geeft.",
+    highlights: [
+      "Matzwarte wanden met witte sanitairlijn voor hoog contrast en tijdloze elegantie",
+      "Zwevend wastafelmeubel in donker hout met stevig werkblad en ronde spiegel met subtiele verlichting",
+      "Inloopdouche met regendouche, handdouche en textuur op de douchevloer voor tactiele diepte",
+      "Gelaagde lichtplanning: plafondlamp, gerichte spots en sfeer rond de spiegel",
+      "Saliegroene zwevende planken en zen-kunstwerk voor kleur en persoonlijkheid zonder drukte",
+    ],
   },
 ];

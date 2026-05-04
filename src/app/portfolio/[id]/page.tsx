@@ -7,6 +7,23 @@ import { PORTFOLIO_ITEMS } from "@/lib/constants";
 
 type Props = { params: { id: string } };
 
+function categoryLabel(
+  category: (typeof PORTFOLIO_ITEMS)[number]["category"],
+) {
+  switch (category) {
+    case "woonkamer":
+      return "Woonkamer";
+    case "slaapkamer":
+      return "Slaapkamer";
+    case "badkamer":
+      return "Badkamer";
+    case "volledig":
+      return "Volledig ontwerp";
+    default:
+      return "Project";
+  }
+}
+
 export function generateStaticParams() {
   return PORTFOLIO_ITEMS.map((p) => ({ id: p.id }));
 }
@@ -14,9 +31,12 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: Props): Metadata {
   const project = PORTFOLIO_ITEMS.find((p) => p.id === params.id);
   if (!project) return { title: "Project" };
+  const description =
+    project.summary?.slice(0, 155) ??
+    `${project.title} — portfolio Mary-Jane Design.`;
   return {
     title: project.title,
-    description: `${project.title} — portfolio Mary-Jane Design.`,
+    description,
   };
 }
 
@@ -38,19 +58,19 @@ export default function PortfolioDetailPage({ params }: Props) {
             ← Terug naar portfolio
           </Link>
           <p className="mt-6 text-sm uppercase tracking-wider text-taupe">
-            {project.category === "woonkamer"
-              ? "Woonkamer"
-              : project.category === "slaapkamer"
-                ? "Slaapkamer"
-                : "Volledig ontwerp"}
+            {categoryLabel(project.category)}
           </p>
           <h1 className="mt-2 font-display text-4xl text-earth md:text-5xl">
             {project.title}
           </h1>
-          <p className="mt-4 text-earth/75">
-            Placeholder projectpagina — vervang met echte fotografie en
-            verhaal wanneer je content klaar hebt.
-          </p>
+          {project.summary ? (
+            <p className="mt-4 leading-relaxed text-earth/80">{project.summary}</p>
+          ) : (
+            <p className="mt-4 text-earth/75">
+              Een greep uit mijn werk — meer beelden en het volledige verhaal
+              volgen zodra dit project online staat.
+            </p>
+          )}
         </MotionSection>
 
         <MotionSection delay={0.08} className="mt-10">
@@ -65,6 +85,23 @@ export default function PortfolioDetailPage({ params }: Props) {
             />
           </div>
         </MotionSection>
+
+        {project.highlights && project.highlights.length > 0 && (
+          <MotionSection delay={0.1} className="mt-12">
+            <h2 className="font-display text-2xl text-earth">Ontwerp in het kort</h2>
+            <ul className="mt-4 space-y-3 text-earth/80">
+              {project.highlights.map((line, i) => (
+                <li key={i} className="flex gap-3">
+                  <span
+                    className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-blush"
+                    aria-hidden
+                  />
+                  <span>{line}</span>
+                </li>
+              ))}
+            </ul>
+          </MotionSection>
+        )}
 
         <MotionSection delay={0.12} className="mt-12">
           <h2 className="font-display text-2xl text-earth">Meer werk</h2>
@@ -96,7 +133,7 @@ export default function PortfolioDetailPage({ params }: Props) {
             href="/contact"
             className="inline-block rounded-card-lg bg-blush px-8 py-3.5 font-medium text-cream transition hover:bg-taupe"
           >
-            Vergelijkbare stijl bespreken?
+            Ook je badkamer of woning laten ontwerpen?
           </Link>
         </MotionSection>
       </div>
