@@ -86,6 +86,28 @@ export default function PortfolioDetailPage({ params }: Props) {
           </div>
         </MotionSection>
 
+        {project.extraImages && project.extraImages.length > 0 && (
+          <MotionSection delay={0.09} className="mt-6">
+            <h2 className="sr-only">Meer beelden</h2>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {project.extraImages.map((src, i) => (
+                <div
+                  key={src}
+                  className="relative aspect-[4/3] overflow-hidden rounded-card-lg"
+                >
+                  <Image
+                    src={src}
+                    alt={`${project.title} — beeld ${i + 2}`}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 896px) 100vw, 440px"
+                  />
+                </div>
+              ))}
+            </div>
+          </MotionSection>
+        )}
+
         {project.highlights && project.highlights.length > 0 && (
           <MotionSection delay={0.1} className="mt-12">
             <h2 className="font-display text-2xl text-earth">Ontwerp in het kort</h2>

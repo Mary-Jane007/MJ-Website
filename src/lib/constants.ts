@@ -10,6 +10,8 @@ export type PortfolioProject = {
   title: string;
   category: Exclude<PortfolioCategory, "alle">;
   image: string;
+  /** Extra beelden op de projectpagina (onder het hoofdbeeld) */
+  extraImages?: string[];
   /** Korte intro op de projectpagina */
   summary?: string;
   /** Bulletpunten met ontwerp-highlights */
@@ -99,13 +101,6 @@ export const PORTFOLIO_ITEMS: PortfolioProject[] = [
       "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=80",
   },
   {
-    id: "2",
-    title: "Luxe slaapkamer",
-    category: "slaapkamer",
-    image:
-      "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=800&q=80",
-  },
-  {
     id: "3",
     title: "Volledig appartement",
     category: "volledig",
@@ -160,6 +155,22 @@ export const PORTFOLIO_ITEMS: PortfolioProject[] = [
       "Inloopdouche met regendouche, handdouche en textuur op de douchevloer voor tactiele diepte",
       "Gelaagde lichtplanning: plafondlamp, gerichte spots en sfeer rond de spiegel",
       "Saliegroene zwevende planken en zen-kunstwerk voor kleur en persoonlijkheid zonder drukte",
+    ],
+  },
+  {
+    id: "11",
+    title: "Terrazzo & messing — luxe spa-badkamer",
+    category: "badkamer",
+    image: "/images/portfolio/terrazzo-goud-spa-badkamer.png",
+    extraImages: ["/images/portfolio/eik-messing-wastafel-badkamer.png"],
+    summary:
+      "Een masterbadkamer ontworpen als rustige wellness: warm neutraal palet, royale dubbele wastafel in licht eikenhout en messing details, plus een inloopdouche met een sculpturale terrazzo-accentwand. 3D-visualisatie en realisatie vielen samen in één helder concept — luxe zonder koelte.",
+    highlights: [
+      "Custom terrazzo-look in de douche als eyecatcher, gecombineerd met goudkleurig kader en regendouche",
+      "Dubbele waskommen op houten werkblad, mozaïektegel als rugwand en ovale spiegels in messing lijst",
+      "Zwevende eikenhouten wastafel met open onderblad voor handdoeken en spa-sfeer",
+      "Verticaal gestreepte taupe wand achter de wastafel voor tactiele diepte en warm licht",
+      "Gelaagde verlichting: lineaire spiegellamp, pendels en sfeervolle pampas als zachte styling",
     ],
   },
 ];
