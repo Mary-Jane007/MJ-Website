@@ -6,6 +6,18 @@ export type PortfolioCategory =
   | "badkamer"
   | "keuken";
 
+/** Labels voor portfolio-filterknoppen (per categorie). */
+export const PORTFOLIO_CATEGORY_LABELS: Record<
+  Exclude<PortfolioCategory, "alle">,
+  string
+> = {
+  woonkamer: "Woonkamer",
+  slaapkamer: "Slaapkamer",
+  badkamer: "Badkamer",
+  keuken: "Keuken",
+  volledig: "Volledig ontwerp",
+};
+
 export type PortfolioProject = {
   id: string;
   title: string;
@@ -98,48 +110,6 @@ export const SERVICE_DETAILS = SERVICES.map((s) => ({
 }));
 
 export const PORTFOLIO_ITEMS: PortfolioProject[] = [
-  {
-    id: "1",
-    title: "Warme woonkamer",
-    category: "woonkamer",
-    image:
-      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=80",
-  },
-  {
-    id: "3",
-    title: "Volledig appartement",
-    category: "volledig",
-    image:
-      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80",
-  },
-  {
-    id: "4",
-    title: "Rustige woonruimte",
-    category: "woonkamer",
-    image:
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80",
-  },
-  {
-    id: "5",
-    title: "Slaapkamer suite",
-    category: "slaapkamer",
-    image:
-      "https://images.unsplash.com/photo-1615529182904-14819c35db37?w=800&q=80",
-  },
-  {
-    id: "6",
-    title: "Complete woning",
-    category: "volledig",
-    image:
-      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80",
-  },
-  {
-    id: "8",
-    title: "Master bedroom",
-    category: "slaapkamer",
-    image:
-      "https://images.unsplash.com/photo-1505693416389-b9b2bbd783d?w=800&q=80",
-  },
   {
     id: "10",
     title: "Modern Zen badkamer",

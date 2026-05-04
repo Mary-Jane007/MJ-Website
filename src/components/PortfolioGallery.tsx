@@ -2,25 +2,36 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MotionSection } from "@/components/MotionSection";
 import {
   PORTFOLIO_ITEMS,
+  PORTFOLIO_CATEGORY_LABELS,
   type PortfolioCategory,
 } from "@/lib/constants";
 
-const FILTERS: { key: PortfolioCategory; label: string }[] = [
-  { key: "alle", label: "Alle" },
-  { key: "woonkamer", label: "Woonkamer" },
-  { key: "slaapkamer", label: "Slaapkamer" },
-  { key: "badkamer", label: "Badkamer" },
-  { key: "keuken", label: "Keuken" },
-  { key: "volledig", label: "Volledig ontwerp" },
-];
-
 export function PortfolioGallery() {
   const [filter, setFilter] = useState<PortfolioCategory>("alle");
+
+  const filterOptions = useMemo(() => {
+    const keys = Array.from(
+      new Set(PORTFOLIO_ITEMS.map((p) => p.category)),
+    ).sort();
+    return [
+      { key: "alle" as const, label: "Alle" },
+      ...keys.map((key) => ({
+        key,
+        label: PORTFOLIO_CATEGORY_LABELS[key],
+      })),
+    ];
+  }, []);
+
+  useEffect(() => {
+    if (filter === "alle") return;
+    const ok = PORTFOLIO_ITEMS.some((p) => p.category === filter);
+    if (!ok) setFilter("alle");
+  }, [filter]);
 
   const items = useMemo(
     () =>
@@ -33,7 +44,7 @@ export function PortfolioGallery() {
   return (
     <>
       <MotionSection className="flex flex-wrap justify-center gap-2">
-        {FILTERS.map((f) => (
+        {filterOptions.map((f) => (
           <button
             key={f.key}
             type="button"
