@@ -94,8 +94,8 @@ export default function PortfolioDetailPage({ params }: Props) {
           <MotionSection delay={0.08} className="mt-10">
             <h2 className="font-display text-2xl text-earth">Vóór &amp; na</h2>
             <p className="mt-2 text-sm text-earth/65">
-              Links de situatie tijdens de verbouwing, rechts het eindresultaat
-              met onder andere het zwarte gasfornuis.
+              Links tijdens de verbouwing (o.a. gasfornuis en basisinstallatie);
+              rechts het warme taupe eindbeeld met koffiehoek en LED-verlichting.
             </p>
             <div className="mt-6 grid gap-6 md:grid-cols-2">
               <figure className="space-y-2">

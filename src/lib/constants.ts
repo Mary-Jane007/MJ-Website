@@ -175,11 +175,11 @@ export const PORTFOLIO_ITEMS: PortfolioProject[] = [
     id: "12",
     title: "Compacte keuken — renovatie vóór & na",
     category: "keuken",
-    image: "/images/portfolio/keuken-na.png",
-    extraImages: ["/images/portfolio/keuken-voor.png"],
+    image: "/images/portfolio/keuken-voor.png",
+    extraImages: ["/images/portfolio/keuken-na.png"],
     beforeAfter: true,
     summary:
-      "Van een ruimte in aanbouw — losse leidingen, basisapparatuur en een tijdelijke werkplek — naar een strakke, moderne keuken: warm taupe, greeploze fronten, donker werkblad en een ingebouwde koffiehoek in hout. Het eindbeeld draait om slimme opslag, LED-taakverlichting en een zwart gasfornuis als krachtig middelpunt.",
+      "Wat je links ziet is de keuken midden in de verbouwing: ruimte voor techniek, basisapparatuur en een tijdelijke werkplek. Rechts staat het eindresultaat: een strakke, moderne keuken in warm taupe met greeploze fronten, donker werkblad, houten koffiehoek en heldere LED-taakverlichting — rustig, functioneel en klaar om dagelijks te leven.",
     highlights: [
       "Greeploze taupe fronten met donker werkblad en geïntegreerde greepprofielen voor een rustige lijn",
       "Houten koffienis met sfeerverlichting, open legplank en plek voor espresso — dagelijks genot in één vak",
