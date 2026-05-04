@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { MotionSection } from "@/components/MotionSection";
 
@@ -7,10 +8,20 @@ export function AboutIntro() {
       <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-2 md:items-center md:gap-16">
         <MotionSection>
           <div className="mx-auto flex max-w-sm justify-center md:mx-0">
-            <div className="relative h-64 w-64 sm:h-72 sm:w-72">
-              <div className="absolute inset-0 rounded-full border-[3px] border-blush/50 bg-gradient-to-br from-blush/20 to-taupe/30" />
-              <div className="absolute inset-3 flex items-center justify-center overflow-hidden rounded-full bg-taupe/25">
-                <span className="font-display text-6xl text-earth/35">MJ</span>
+            <div className="relative h-72 w-72 sm:h-80 sm:w-80">
+              <div
+                className="absolute inset-0 rounded-full border-[3px] border-blush/50 bg-gradient-to-br from-blush/20 to-taupe/20 shadow-warm"
+                aria-hidden
+              />
+              <div className="absolute inset-[11px] overflow-hidden rounded-full border-2 border-cream/90 bg-taupe/10 shadow-inner ring-1 ring-taupe/20">
+                <Image
+                  src="/images/mary-jane-portrait.png"
+                  alt="Mary-Jane — interieurontwerper bij Mary-Jane Design"
+                  fill
+                  className="object-cover object-[center_12%] scale-[1.08]"
+                  sizes="(max-width: 640px) 288px, 320px"
+                  priority
+                />
               </div>
             </div>
           </div>

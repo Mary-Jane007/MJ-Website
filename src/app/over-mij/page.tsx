@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { MotionSection } from "@/components/MotionSection";
 import { Heart, Sparkles, Sun } from "lucide-react";
@@ -42,10 +43,15 @@ export default function OverMijPage() {
 
         <div className="mt-14 grid gap-14 lg:grid-cols-2 lg:items-start">
           <MotionSection>
-            <div className="mx-auto aspect-[4/5] max-w-md overflow-hidden rounded-card-lg border border-blush/30 bg-linen lg:mx-0">
-              <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-blush/15 to-taupe/25">
-                <span className="font-display text-8xl text-earth/25">MJ</span>
-              </div>
+            <div className="relative mx-auto aspect-[4/5] max-w-md overflow-hidden rounded-card-lg border border-blush/30 bg-linen shadow-warm lg:mx-0">
+              <Image
+                src="/images/mary-jane-portrait.png"
+                alt="Mary-Jane — interieurontwerper"
+                fill
+                className="object-cover object-[center_15%]"
+                sizes="(max-width: 1024px) 100vw, 448px"
+                priority
+              />
             </div>
           </MotionSection>
           <MotionSection delay={0.08}>
