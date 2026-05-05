@@ -12,7 +12,7 @@ export function Hero() {
           alt="Warm interieur met natuurlijk licht"
           fill
           priority
-          className="object-cover"
+          className="object-cover object-center"
           sizes="100vw"
         />
         <div

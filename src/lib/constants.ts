@@ -25,6 +25,8 @@ export type PortfolioProject = {
   image: string;
   /** Extra beelden op de projectpagina (onder het hoofdbeeld) */
   extraImages?: string[];
+  /** Optioneel moodboard (collage) — eigen sectie met volledige weergave */
+  moodboardImage?: string;
   /**
    * `true`: eerste extra afbeelding = vóór, `image` = na (vóór/na-sectie op detailpagina).
    */
@@ -33,6 +35,13 @@ export type PortfolioProject = {
   summary?: string;
   /** Bulletpunten met ontwerp-highlights */
   highlights?: string[];
+  /**
+   * Thumbnail op home/portfolio-overzicht:
+   * `landscape` = 16:10 (standaard, ruimtelijke / brede foto’s),
+   * `portrait` = 3:4 voor duidelijk verticale beelden,
+   * `contain` = 16:10 kader, volledige foto zichtbaar (letterbox).
+   */
+  thumbFrame?: "landscape" | "portrait" | "contain";
 };
 
 const facebookFromEnv = process.env.NEXT_PUBLIC_FACEBOOK_URL?.trim();
@@ -114,7 +123,9 @@ export const PORTFOLIO_ITEMS: PortfolioProject[] = [
     id: "10",
     title: "Modern Zen badkamer",
     category: "badkamer",
+    thumbFrame: "portrait",
     image: "/images/portfolio/modern-zen-badkamer.png",
+    moodboardImage: "/images/portfolio/modern-zen-matcha-moodboard.png",
     summary:
       "Een compacte badkamer omgetoverd tot een rustig, luxe toevluchtsoord: diep matzwart als canvas, zacht saliegroen als accent en warm hout voor balans. Het resultaat voelt strak én ontspannen — alsof je elke dag een klein spa-moment cadeau geeft.",
     highlights: [
@@ -129,6 +140,7 @@ export const PORTFOLIO_ITEMS: PortfolioProject[] = [
     id: "11",
     title: "Terrazzo & messing — luxe spa-badkamer",
     category: "badkamer",
+    thumbFrame: "landscape",
     image: "/images/portfolio/terrazzo-goud-spa-badkamer.png",
     extraImages: ["/images/portfolio/eik-messing-wastafel-badkamer.png"],
     summary:
@@ -145,6 +157,7 @@ export const PORTFOLIO_ITEMS: PortfolioProject[] = [
     id: "12",
     title: "Compacte keuken — renovatie vóór & na",
     category: "keuken",
+    thumbFrame: "landscape",
     image: "/images/portfolio/keuken-voor.png",
     extraImages: ["/images/portfolio/keuken-na.png"],
     beforeAfter: true,
@@ -156,6 +169,39 @@ export const PORTFOLIO_ITEMS: PortfolioProject[] = [
       "Inbouwapparatuur (o.a. koelkast en combimagnetron) netjes verzonken in de kolom",
       "Onderbouw-LED boven het werkblad voor helder, warm licht bij koken en afwassen",
       "Verlengd werkblad met barkruk: ontbijtplek zonder extra vierkante meters",
+    ],
+  },
+  {
+    id: "13",
+    title: "Low budget wachtruimte in salonsfeer",
+    category: "woonkamer",
+    thumbFrame: "landscape",
+    image: "/images/portfolio/wachtruimte-salon-eindresultaat.png",
+    summary:
+      "Een donkere, kale wachtruimte van een salon omgevormd tot een warme, uitnodigende zithoek met minimale middelen: lichte bouclé-zitmeubels, zwart staal, veel groen en een rond juten vloerkleed als eyecatcher.",
+    highlights: [
+      "Meubelbord met betaalbare items: bouclé-bankje, zwarte salontafeltjes, lattenpaneel, grote kamerplant en rond juten vloerkleed",
+      "Diep donkerblauwe / bijna zwarte accentmuur voor een chique basis, gecombineerd met lichte meubels voor contrast",
+      "Ronde jute vloermat als zacht middenpunt dat warmte en textuur toevoegt bovenop de bestaande, donkere vloertegels",
+      "Strakke zwarte tafeltjes in staal die luchtig ogen maar voldoende plek geven voor accessoires en koffiekopjes",
+      "Grote planten en gouden accenten (zoals de staande lamp) zorgen voor hotel-achtige salonsfeer met een klein budget",
+    ],
+  },
+  {
+    id: "14",
+    title: "RB&B slaapkamer inrichting",
+    category: "slaapkamer",
+    thumbFrame: "landscape",
+    image: "/images/portfolio/rbb-slaapkamer-inrichting.png",
+    moodboardImage: "/images/portfolio/rbb-slaapkamer-moodboard.png",
+    summary:
+      "Een rustige RB&B-slaapkamer ingericht in warme zand- en crèmetinten, met twee comfortabele bedden, zachte texturen en subtiele styling die meteen een ontspannen verblijf uitstraalt.",
+    highlights: [
+      "Twee volwaardige slaapplaatsen in een lichte, overzichtelijke opstelling die de kamer ruim laat aanvoelen",
+      "Zachte beige en crèmekleuren voor een kalme, gastvrije sfeer die past bij kort verblijf",
+      "Natuurlijke materialen zoals hout, geweven vloerkleed en pampas voor warmte zonder visuele drukte",
+      "Compact zit- en stylinghoekje met fauteuil, bijzettafel en sfeerdecor voor extra comfort",
+      "Eenvoudige, budgetvriendelijke inrichting met hotelgevoel door textiel, lagen en rustige accessoires",
     ],
   },
 ];

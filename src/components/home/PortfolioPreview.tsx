@@ -10,6 +10,10 @@ import {
   PORTFOLIO_CATEGORY_LABELS,
   type PortfolioCategory,
 } from "@/lib/constants";
+import {
+  portfolioThumbImageClass,
+  portfolioThumbWrapperClass,
+} from "@/lib/portfolio-thumb";
 
 export function PortfolioPreview() {
   const [filter, setFilter] = useState<PortfolioCategory>("alle");
@@ -49,7 +53,8 @@ export function PortfolioPreview() {
             Portfolio
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-center text-earth/70">
-            Een glimp van recent werk — hover voor de projectnaam.
+            Geselecteerde projecten — hover voor de titel. Beelden in een rustig
+            16:10-kader (tenzij anders passend bij de opname).
           </p>
         </MotionSection>
 
@@ -70,7 +75,10 @@ export function PortfolioPreview() {
           ))}
         </MotionSection>
 
-        <motion.div layout className="mt-12 columns-1 gap-4 sm:columns-2 lg:columns-3">
+        <motion.div
+          layout
+          className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+        >
           <AnimatePresence mode="popLayout">
             {items.map((item) => (
               <motion.div
@@ -80,18 +88,20 @@ export function PortfolioPreview() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 1, scale: 0.98 }}
                 transition={{ duration: 0.35 }}
-                className="mb-4 break-inside-avoid"
+                className="flex"
               >
                 <Link
                   href={`/portfolio/${item.id}`}
-                  className="group relative block overflow-hidden rounded-card-lg"
+                  className="group relative flex w-full flex-col overflow-hidden"
                 >
-                  <div className="relative aspect-[4/5] w-full sm:aspect-[3/4]">
+                  <div
+                    className={`${portfolioThumbWrapperClass(item.thumbFrame)} flex-1`}
+                  >
                     <Image
                       src={item.image}
                       alt={item.title}
                       fill
-                      className="object-cover transition duration-500 group-hover:scale-105"
+                      className={`${portfolioThumbImageClass(item.thumbFrame)} transition duration-500 group-hover:scale-[1.02]`}
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                     <div className="absolute inset-0 bg-earth/0 transition duration-300 group-hover:bg-earth/45" />

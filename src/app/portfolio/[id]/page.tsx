@@ -4,6 +4,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MotionSection } from "@/components/MotionSection";
 import { PORTFOLIO_ITEMS } from "@/lib/constants";
+import {
+  portfolioThumbImageClass,
+  portfolioThumbWrapperClass,
+} from "@/lib/portfolio-thumb";
 
 type Props = { params: { id: string } };
 
@@ -63,6 +67,7 @@ export default function PortfolioDetailPage({ params }: Props) {
     project.beforeAfter === true &&
     project.extraImages &&
     project.extraImages.length >= 1;
+  const isCompactMoodboard = project.id === "14";
 
   return (
     <div className="bg-cream pb-20 pt-28">
@@ -102,12 +107,12 @@ export default function PortfolioDetailPage({ params }: Props) {
                 <figcaption className="text-xs font-semibold uppercase tracking-wider text-taupe">
                   Vóór
                 </figcaption>
-                <div className="relative aspect-[4/3] overflow-hidden rounded-card-lg border border-taupe/15">
+                <div className="relative aspect-[16/10] overflow-hidden rounded-card-lg border border-taupe/15 bg-linen">
                   <Image
                     src={project.extraImages![0]}
                     alt={`${project.title} — situatie vóór renovatie`}
                     fill
-                    className="object-cover"
+                    className="object-cover object-center"
                     sizes="(max-width: 768px) 100vw, 440px"
                     priority
                   />
@@ -117,12 +122,12 @@ export default function PortfolioDetailPage({ params }: Props) {
                 <figcaption className="text-xs font-semibold uppercase tracking-wider text-blush">
                   Na
                 </figcaption>
-                <div className="relative aspect-[4/3] overflow-hidden rounded-card-lg border border-taupe/15 shadow-warm">
+                <div className="relative aspect-[16/10] overflow-hidden rounded-card-lg border border-taupe/15 bg-linen shadow-warm">
                   <Image
                     src={project.image}
                     alt={`${project.title} — eindresultaat`}
                     fill
-                    className="object-cover"
+                    className="object-cover object-center"
                     sizes="(max-width: 768px) 100vw, 440px"
                   />
                 </div>
@@ -132,17 +137,41 @@ export default function PortfolioDetailPage({ params }: Props) {
         ) : (
           <>
             <MotionSection delay={0.08} className="mt-10">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-card-lg">
+              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-card-lg border border-taupe/10 bg-linen shadow-sm">
                 <Image
                   src={project.image}
                   alt={project.title}
                   fill
-                  className="object-cover"
+                  className="object-cover object-center"
                   sizes="(max-width: 896px) 100vw, 896px"
                   priority
                 />
               </div>
             </MotionSection>
+
+            {project.moodboardImage ? (
+              <MotionSection delay={0.085} className="mt-10">
+                <h2 className="font-display text-2xl text-earth">Moodboard</h2>
+                <p className="mt-2 text-sm text-earth/65">
+                  Kleur- en materiaalinspiratie voor dit concept, met focus op
+                  sfeer, textuur en een rustig geheel.
+                </p>
+                <div
+                  className={`mt-6 overflow-hidden rounded-card-lg border border-taupe/10 shadow-sm ${
+                    isCompactMoodboard ? "mx-auto max-w-2xl bg-linen" : "bg-[#2c2c2c]"
+                  }`}
+                >
+                  <Image
+                    src={project.moodboardImage}
+                    alt={`${project.title} — moodboard`}
+                    width={1024}
+                    height={827}
+                    className="h-auto w-full object-contain"
+                    sizes="(max-width: 896px) 100vw, 896px"
+                  />
+                </div>
+              </MotionSection>
+            ) : null}
 
             {project.extraImages && project.extraImages.length > 0 && (
               <MotionSection delay={0.09} className="mt-6">
@@ -151,13 +180,13 @@ export default function PortfolioDetailPage({ params }: Props) {
                   {project.extraImages.map((src, i) => (
                     <div
                       key={src}
-                      className="relative aspect-[4/3] overflow-hidden rounded-card-lg"
+                      className="relative aspect-[16/10] overflow-hidden rounded-card-lg border border-taupe/10 bg-linen"
                     >
                       <Image
                         src={src}
                         alt={`${project.title} — beeld ${i + 2}`}
                         fill
-                        className="object-cover"
+                        className="object-cover object-center"
                         sizes="(max-width: 896px) 100vw, 440px"
                       />
                     </div>
@@ -192,14 +221,14 @@ export default function PortfolioDetailPage({ params }: Props) {
               <Link
                 key={p.id}
                 href={`/portfolio/${p.id}`}
-                className="group relative aspect-square overflow-hidden rounded-card"
+                className={`group block ${portfolioThumbWrapperClass(p.thumbFrame)}`}
               >
                 <Image
                   src={p.image}
                   alt={p.title}
                   fill
-                  className="object-cover transition group-hover:scale-105"
-                  sizes="200px"
+                  className={`${portfolioThumbImageClass(p.thumbFrame)} transition group-hover:scale-[1.02]`}
+                  sizes="(max-width: 640px) 100vw, 200px"
                 />
                 <div className="absolute inset-0 bg-earth/0 transition group-hover:bg-earth/35" />
                 <p className="absolute bottom-2 left-2 right-2 font-display text-sm text-cream opacity-0 transition group-hover:opacity-100">
