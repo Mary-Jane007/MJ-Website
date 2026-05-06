@@ -15,6 +15,12 @@ import {
   portfolioThumbWrapperClass,
 } from "@/lib/portfolio-thumb";
 
+const imageMoodVariants = [
+  "saturate-[0.82] contrast-[0.9] brightness-[0.94]",
+  "saturate-[0.76] contrast-[0.92] brightness-[0.92]",
+  "saturate-[0.8] contrast-[0.88] brightness-[0.95]",
+] as const;
+
 export function PortfolioPreview() {
   const [filter, setFilter] = useState<PortfolioCategory>("alle");
 
@@ -80,7 +86,7 @@ export function PortfolioPreview() {
           className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
         >
           <AnimatePresence mode="popLayout">
-            {items.map((item) => (
+            {items.map((item, index) => (
               <motion.div
                 layout
                 key={item.id}
@@ -101,12 +107,13 @@ export function PortfolioPreview() {
                       src={item.image}
                       alt={item.title}
                       fill
-                      className={`${portfolioThumbImageClass(item.thumbFrame)} transition duration-500 group-hover:scale-[1.02]`}
+                      className={`${portfolioThumbImageClass(item.thumbFrame)} ${imageMoodVariants[index % imageMoodVariants.length]} scale-[1.03] opacity-75 transition duration-700 group-hover:scale-[1.08] group-hover:opacity-100 group-hover:saturate-100 group-hover:contrast-100 group-hover:brightness-100`}
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
-                    <div className="absolute inset-0 bg-earth/0 transition duration-300 group-hover:bg-earth/45" />
-                    <div className="absolute inset-0 flex items-center justify-center p-4 opacity-0 transition duration-300 group-hover:opacity-100">
-                      <p className="text-center font-display text-xl text-cream sm:text-2xl">
+                    <div className="absolute inset-0 bg-gradient-to-b from-cream/45 via-cream/25 to-earth/45 transition duration-700 group-hover:from-cream/15 group-hover:via-transparent group-hover:to-earth/60" />
+                    <div className="absolute inset-0 border border-cream/55 bg-[radial-gradient(circle_at_25%_15%,rgba(255,255,255,0.32),transparent_40%)] opacity-90 transition duration-700 group-hover:border-cream/25 group-hover:opacity-55" />
+                    <div className="absolute inset-0 flex items-end justify-start p-5 opacity-100 transition duration-500 group-hover:opacity-100">
+                      <p className="rounded-full bg-earth/55 px-4 py-1.5 font-display text-base text-cream shadow-sm backdrop-blur-[2px] sm:text-lg">
                         {item.title}
                       </p>
                       <span className="sr-only">Bekijk project</span>

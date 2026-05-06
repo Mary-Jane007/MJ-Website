@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { MotionSection } from "@/components/MotionSection";
 import { PortfolioGallery } from "@/components/PortfolioGallery";
+import { BRAND } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Portfolio",
-  description:
-    "Bekijk geselecteerde interieurprojecten van Mary-Jane Design — woonkamers, slaapkamers en volledige ontwerpen.",
+  description: `Bekijk geselecteerde projecten van ${BRAND.name} — interieur, materiaal en bouw.`,
 };
 
 export default function PortfolioPage() {

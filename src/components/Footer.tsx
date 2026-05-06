@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Instagram, Facebook, Mail } from "lucide-react";
-import { NAV_LINKS, SITE } from "@/lib/constants";
+import { BRAND, NAV_LINKS, SITE } from "@/lib/constants";
 
 export function Footer() {
   return (
@@ -13,11 +13,11 @@ export function Footer() {
                 MJ
               </span>
               <span className="font-display text-2xl text-earth">
-                Mary-Jane Design
+                {BRAND.name}
               </span>
             </div>
             <p className="mt-3 max-w-sm font-script text-xl text-taupe">
-              Tell me your story, I&apos;ll design.
+              {BRAND.tagline}
             </p>
           </div>
 
@@ -74,8 +74,7 @@ export function Footer() {
         </div>
 
         <p className="mt-12 text-center text-sm text-earth/50">
-          © {new Date().getFullYear()} Mary-Jane Design. Alle rechten
-          voorbehouden.
+          © {new Date().getFullYear()} {BRAND.name}. Alle rechten voorbehouden.
         </p>
       </div>
     </footer>

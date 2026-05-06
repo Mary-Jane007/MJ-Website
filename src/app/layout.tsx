@@ -6,6 +6,7 @@ import {
 } from "next/font/google";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { BRAND, SITE } from "@/lib/constants";
 import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
 
@@ -30,40 +31,57 @@ const dancing = Dancing_Script({
 });
 
 const siteUrl = getSiteUrl();
+const defaultTitle = `${BRAND.name} | Interieurarchitectuur ${BRAND.location}`;
+const ogImage =
+  "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&h=630&fit=crop&q=80";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: BRAND.name,
+  description: BRAND.metaDescription,
+  url: siteUrl,
+  email: SITE.email,
+  telephone: SITE.phoneDisplay,
+  areaServed: [
+    { "@type": "Place", name: "Curaçao" },
+    { "@type": "Place", name: "Suriname" },
+  ],
+  founder: { "@type": "Person", name: BRAND.founder },
+  sameAs: [SITE.instagramUrl, SITE.facebookUrl].filter(
+    (u) => u && !u.endsWith("facebook.com/"),
+  ),
+};
 
 export const metadata: Metadata = {
   title: {
-    default: "Mary-Jane Design | Interieurontwerp Curaçao",
-    template: "%s | Mary-Jane Design",
+    default: defaultTitle,
+    template: `%s | ${BRAND.name}`,
   },
-  description:
-    "Premium persoonlijk interieurontwerp op Curaçao. Tell me your story, I'll design.",
+  description: BRAND.metaDescription,
   metadataBase: new URL(siteUrl),
+  robots: { index: true, follow: true },
   openGraph: {
     type: "website",
     locale: "nl_NL",
     url: siteUrl,
-    siteName: "Mary-Jane Design",
-    title: "Mary-Jane Design | Interieurontwerp Curaçao",
-    description:
-      "Premium persoonlijk interieurontwerp op Curaçao. Tell me your story, I'll design.",
+    siteName: BRAND.name,
+    title: defaultTitle,
+    description: BRAND.metaDescription,
     images: [
       {
-        url: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&h=630&fit=crop&q=80",
+        url: ogImage,
         width: 1200,
         height: 630,
-        alt: "Warm interieur — Mary-Jane Design",
+        alt: `Warm interieur — ${BRAND.name}`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mary-Jane Design | Interieurontwerp Curaçao",
-    description:
-      "Premium persoonlijk interieurontwerp op Curaçao. Tell me your story, I'll design.",
-    images: [
-      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&h=630&fit=crop&q=80",
-    ],
+    title: defaultTitle,
+    description: BRAND.metaDescription,
+    images: [ogImage],
   },
 };
 
@@ -78,6 +96,10 @@ export default function RootLayout({
       className={`${cormorant.variable} ${jost.variable} ${dancing.variable}`}
     >
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <a
           href="#main-content"
           className="fixed left-4 top-0 z-[100] -translate-y-full rounded-card-lg bg-cream px-4 py-3 text-sm font-medium text-earth shadow-warm outline-none ring-blush/50 transition focus:translate-y-4 focus:ring-2"

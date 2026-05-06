@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { MotionSection } from "@/components/MotionSection";
-import { SERVICE_DETAILS } from "@/lib/constants";
+import { BRAND, SERVICE_DETAILS } from "@/lib/constants";
 import {
   Box,
   LayoutGrid,
@@ -13,8 +13,7 @@ import {
 
 export const metadata: Metadata = {
   title: "Diensten",
-  description:
-    "Interieuradvies, volledig ontwerp, 3D-visualisatie en meer — Mary-Jane Design Curaçao.",
+  description: `Interieuradvies, 3D, materiaalkeuze, bouwtekeningen en meer — ${BRAND.name} ${BRAND.location}.`,
 };
 
 const icons: Record<string, LucideIcon> = {

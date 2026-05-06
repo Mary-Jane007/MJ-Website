@@ -1,7 +1,7 @@
 import { Phone, Mail, Instagram, Facebook } from "lucide-react";
 import { MotionSection } from "@/components/MotionSection";
 import { ContactForm } from "@/components/ContactForm";
-import { SITE } from "@/lib/constants";
+import { BRAND, SITE } from "@/lib/constants";
 
 export function HomeContact() {
   return (
@@ -56,7 +56,7 @@ export function HomeContact() {
                 rel="noopener noreferrer"
                 className="hover:text-blush"
               >
-                Facebook: Mary-Jane Design
+                Facebook: {BRAND.name}
               </a>
             </li>
           </ul>

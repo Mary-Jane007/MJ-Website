@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { NAV_LINKS } from "@/lib/constants";
+import { BRAND, NAV_LINKS } from "@/lib/constants";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -54,7 +54,7 @@ export function Navbar() {
           >
             MJ
           </span>
-          <span className={titleClass}>Mary-Jane Design</span>
+          <span className={titleClass}>{BRAND.name}</span>
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">

@@ -2,12 +2,11 @@ import type { Metadata } from "next";
 import { Phone, Mail, Instagram, Facebook, MapPin } from "lucide-react";
 import { MotionSection } from "@/components/MotionSection";
 import { ContactForm } from "@/components/ContactForm";
-import { SITE } from "@/lib/constants";
+import { BRAND, SITE } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description:
-    "Neem contact op met Mary-Jane Design — interieurontwerp Curaçao.",
+  description: `Neem contact op met ${BRAND.name} — interieurarchitectuur ${BRAND.location}.`,
 };
 
 export default function ContactPage() {
@@ -63,7 +62,7 @@ export default function ContactPage() {
                     rel="noopener noreferrer"
                     className="hover:text-blush"
                   >
-                    Mary-Jane Design op Facebook
+                    {BRAND.name} op Facebook
                   </a>
                 </li>
               </ul>

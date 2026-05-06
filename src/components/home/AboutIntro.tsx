@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { MotionSection } from "@/components/MotionSection";
+import { ABOUT_PORTRAIT, BRAND } from "@/lib/constants";
 
 export function AboutIntro() {
   return (
@@ -15,8 +16,8 @@ export function AboutIntro() {
               />
               <div className="absolute inset-[11px] overflow-hidden rounded-full border-2 border-cream/90 bg-taupe/10 shadow-inner ring-1 ring-taupe/20">
                 <Image
-                  src="/images/mary-jane-portrait.png"
-                  alt="Mary-Jane — interieurontwerper bij Mary-Jane Design"
+                  src={ABOUT_PORTRAIT}
+                  alt={`${BRAND.founder} — interieurarchitect, ${BRAND.name}`}
                   fill
                   className="object-cover object-[center_18%] scale-[1.02]"
                   sizes="(max-width: 640px) 288px, 320px"
@@ -28,20 +29,21 @@ export function AboutIntro() {
         </MotionSection>
         <MotionSection delay={0.08}>
           <p className="text-sm font-medium uppercase tracking-wider text-blush">
-            Over Mary-Jane
+            Over mij
           </p>
           <h2 className="mt-2 font-display text-3xl text-earth md:text-4xl">
-            Interieur met hart — en een vleugje luxe
+            Ik ben Marisol, interieurarchitect
           </h2>
           <p className="mt-5 leading-relaxed text-earth/80">
-            Ik geloof dat een mooi huis begint bij jouw verhaal: hoe je leeft,
-            wie je bent, wat je rust geeft. Mary-Jane Design is mijn
-            persoonlijke studio op Curaçao, waar ik warme, tijdloze ruimtes
-            ontwerp die aanvoelen als een diepe zucht van thuiskomen.
+            Tijdens mijn studie aan de LOI hogeschool groeide mijn passie voor
+            interieurdesign uit tot Mary-Design. In elk project creëer ik
+            unieke, inspirerende ruimtes die passen bij de wensen en
+            persoonlijkheid van mijn klanten: esthetisch sterk, functioneel en
+            comfortabel.
           </p>
           <blockquote className="mt-8 border-l-2 border-blush pl-5 font-script text-2xl text-taupe md:text-3xl">
-            &ldquo;Jouw ruimte mag zacht zijn, sterk zijn, en helemaal van
-            jou.&rdquo;
+            &ldquo;Met aandacht voor detail en een creatieve aanpak breng ik
+            elke ruimte tot leven.&rdquo;
           </blockquote>
           <Link
             href="/over-mij"

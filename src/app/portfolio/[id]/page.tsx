@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MotionSection } from "@/components/MotionSection";
-import { PORTFOLIO_ITEMS } from "@/lib/constants";
+import { BRAND, PORTFOLIO_ITEMS } from "@/lib/constants";
 import {
   portfolioThumbImageClass,
   portfolioThumbWrapperClass,
@@ -49,7 +49,7 @@ export function generateMetadata({ params }: Props): Metadata {
   if (!project) return { title: "Project" };
   const description =
     project.summary?.slice(0, 155) ??
-    `${project.title} — portfolio Mary-Jane Design.`;
+    `${project.title} — portfolio ${BRAND.name}.`;
   return {
     title: project.title,
     description,

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { BRAND } from "@/lib/constants";
 
 export function Hero() {
   return (
@@ -44,7 +45,7 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="font-display text-5xl text-cream sm:text-6xl md:text-7xl"
         >
-          Mary-Jane Design
+          {BRAND.name}
         </motion.h1>
         <motion.p
           initial={{ opacity: 1, y: 12 }}
@@ -52,7 +53,7 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mt-6 max-w-xl font-script text-2xl text-cream/95 sm:text-3xl"
         >
-          Tell me your story, I&apos;ll design.
+          {BRAND.tagline}
         </motion.p>
         <motion.div
           initial={{ opacity: 1, y: 10 }}

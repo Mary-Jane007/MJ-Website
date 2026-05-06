@@ -54,9 +54,23 @@ export const SITE = {
       ? facebookFromEnv
       : "https://www.facebook.com/",
   email: "maryjanedesign.su@gmail.com",
-  phoneDisplay: "+597-8927286",
-  phoneTel: "tel:+5978927286",
+  phoneDisplay: "+5999-6695227",
+  phoneTel: "tel:+59996695227",
 } as const;
+
+/** Merk + SEO — één bron voor titels en beschrijvingen. */
+export const BRAND = {
+  name: "Mary-Design",
+  founder: "Marisol",
+  location: "Curaçao",
+  tagline:
+    "Interieurarchitectuur — van styling tot materiaalkeuze en bouwtekeningen.",
+  metaDescription:
+    "Mary-Design door Marisol: interieurarchitectuur op Curaçao. Interieuradvies, 3D-visualisaties, materiaalkeuze bij bouw en bouwtekeningen.",
+} as const;
+
+/** Profielfoto Over mij / home (lokaal in /public). */
+export const ABOUT_PORTRAIT = "/images/marisol-portrait.png" as const;
 
 export const NAV_LINKS = [
   { href: "/", label: "Home" },
@@ -71,7 +85,7 @@ export const SERVICES = [
     id: "materiaal",
     title: "Materiaal-, kleur- en/of meubeladvies",
     short:
-      "Samen kiezen we materialen, tinten en meubels die bij jouw verhaal passen.",
+      "Samen kiezen we materialen, tinten en meubels die bij jouw verhaal en bouwfase passen.",
     icon: "palette" as const,
   },
   {
@@ -99,7 +113,7 @@ export const SERVICES = [
     id: "indelingsplan",
     title: "Indelingsplan & projectbegeleiding",
     short:
-      "Slimme indeling plus begeleiding tijdens de realisatie van je droominterieur.",
+      "Slimme indeling, bouwtekeningen en begeleiding tijdens de realisatie.",
     icon: "ruler" as const,
   },
 ] as const;
@@ -108,14 +122,14 @@ export const SERVICE_DETAILS = SERVICES.map((s) => ({
   ...s,
   description:
     s.id === "materiaal"
-      ? "Kleuren, texturen en meubelkeuzes bepalen de sfeer van je huis. Tijdens een persoonlijke sessie breng ik jouw voorkeuren in kaart en stel ik een moodboard en concrete aanbevelingen samen — van vloer tot gordijnen."
+      ? "Kleuren, texturen en meubelkeuzes bepalen de sfeer van je huis. Tijdens een persoonlijke sessie breng ik jouw voorkeuren in kaart en stel ik een moodboard en concrete aanbevelingen samen — van vloer tot gevelafwerking, passend bij de bouwfase."
       : s.id === "interieuradvies"
         ? "Je wilt verandering, maar weet niet waar te beginnen? Met interieuradvies krijg je een helder plan: indeling, licht, stijl en praktische tips die je direct kunt toepassen of laat uitvoeren."
         : s.id === "volledig"
           ? "Voor wie één lijn door het hele huis wil: van eerste schets tot laatste accessoire. Ik ontwerp elk detail in harmonie met jouw levensstijl, zodat elk vertrek voelt als thuiskomen."
           : s.id === "3d"
             ? "Visualiseer je ontwerp met realistische 3D-beelden. Zo maak je betere keuzes, stem je af met aannemers en ervaar je rust voordat je investeert in materialen en meubels."
-            : "Een goed indelingsplan bespaart frustratie en ruimte. Ik teken opties, adviseer over stromen en licht, en kan optioneel meelopen tijdens de bouw- of renovatiefase.",
+            : "Een goed indelingsplan bespaart frustratie en ruimte. Ik maak ook bouwtekeningen, teken opties uit, adviseer over stromen en licht, en kan optioneel meelopen tijdens de bouw- of renovatiefase.",
 }));
 
 export const PORTFOLIO_ITEMS: PortfolioProject[] = [
@@ -202,6 +216,21 @@ export const PORTFOLIO_ITEMS: PortfolioProject[] = [
       "Natuurlijke materialen zoals hout, geweven vloerkleed en pampas voor warmte zonder visuele drukte",
       "Compact zit- en stylinghoekje met fauteuil, bijzettafel en sfeerdecor voor extra comfort",
       "Eenvoudige, budgetvriendelijke inrichting met hotelgevoel door textiel, lagen en rustige accessoires",
+    ],
+  },
+  {
+    id: "15",
+    title: "Nieuwbouwgevel — 3D ontwerpvoorstel",
+    category: "volledig",
+    thumbFrame: "landscape",
+    image: "/images/portfolio/bouwproject-gevel-3d.png",
+    summary:
+      "Voor dit bouwproject maakte ik een modern gevelvoorstel in 3D. Naast het ontwerp help ik in deze fase ook met materiaalkeuze, zodat stijl, duurzaamheid en budget vanaf het begin op elkaar aansluiten.",
+    highlights: [
+      "3D-voorstel van de voorgevel voor een helder totaalbeeld nog voor de uitvoering start",
+      "Materiaalkeuze tijdens de bouwfase: afwerking, kleurtoon en combinaties per geveldeel",
+      "Vertaling van esthetische wensen naar praktische keuzes die uitvoerbaar zijn op de werf",
+      "Heldere visualisatie voor afstemming met aannemer en andere betrokken partijen",
     ],
   },
 ];

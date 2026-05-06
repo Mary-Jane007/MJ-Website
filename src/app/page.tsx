@@ -4,6 +4,7 @@ import { ServicesGrid } from "@/components/home/ServicesGrid";
 import { AboutIntro } from "@/components/home/AboutIntro";
 import { ProcessSection } from "@/components/home/ProcessSection";
 import { PortfolioPreview } from "@/components/home/PortfolioPreview";
+import { ReviewsSection } from "@/components/home/ReviewsSection";
 import { CTABanner } from "@/components/home/CTABanner";
 import { HomeContact } from "@/components/home/HomeContact";
 
@@ -16,6 +17,7 @@ export default function HomePage() {
       <AboutIntro />
       <ProcessSection />
       <PortfolioPreview />
+      <ReviewsSection />
       <CTABanner />
       <HomeContact />
     </>

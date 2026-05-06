@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { MotionSection } from "@/components/MotionSection";
+import { ABOUT_PORTRAIT, BRAND } from "@/lib/constants";
 import { Heart, Sparkles, Sun } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Over mij",
-  description:
-    "Leer Mary-Jane kennen — interieurontwerper op Curaçao met een warme, persoonlijke aanpak.",
+  description: `Leer ${BRAND.founder} kennen — interieurarchitect en oprichter van ${BRAND.name} met een persoonlijke aanpak.`,
 };
 
 const values = [
@@ -37,47 +37,57 @@ export default function OverMijPage() {
             Over mij
           </p>
           <h1 className="mt-2 font-display text-4xl text-earth md:text-5xl lg:text-6xl">
-            Hallo, ik ben Mary-Jane
+            Hallo, ik ben Marisol
           </h1>
         </MotionSection>
 
         <div className="mt-14 grid gap-14 lg:grid-cols-2 lg:items-start">
           <MotionSection>
-            <div className="relative mx-auto aspect-[4/5] max-w-md overflow-hidden rounded-card-lg border border-blush/30 bg-linen shadow-warm lg:mx-0">
-              <Image
-                src="/images/mary-jane-portrait.png"
-                alt="Mary-Jane — interieurontwerper"
-                fill
-                className="object-cover object-[center_15%]"
-                sizes="(max-width: 1024px) 100vw, 448px"
-                priority
-              />
+            <div className="mx-auto flex justify-center lg:justify-start">
+              <div className="relative h-80 w-80 sm:h-96 sm:w-96">
+                <div
+                  className="absolute inset-0 rounded-full border-[3px] border-blush/45 bg-gradient-to-br from-blush/20 to-taupe/20 shadow-warm"
+                  aria-hidden
+                />
+                <div className="absolute inset-[12px] overflow-hidden rounded-full border-2 border-cream/90 bg-linen shadow-inner ring-1 ring-taupe/20">
+                  <Image
+                    src={ABOUT_PORTRAIT}
+                    alt={`${BRAND.founder} — interieurarchitect, ${BRAND.name}`}
+                    fill
+                    className="object-cover object-[center_15%] scale-[1.02]"
+                    sizes="(max-width: 640px) 320px, 384px"
+                    priority
+                  />
+                </div>
+              </div>
             </div>
           </MotionSection>
           <MotionSection delay={0.08}>
             <div className="space-y-5 text-lg leading-relaxed text-earth/85">
               <p>
-                Mary-Jane Design is ontstaan uit liefde voor mooie ruimtes én
-                voor de verhalen die mensen met zich meedragen. Opgegroeid met
-                oog voor detail en een zwak voor warme tinten, vond ik mijn
-                plek in het creëren van interieurs die zowel elegant als
-                uitnodigend zijn.
+                Mijn naam is Marisol, interieurarchitect en oprichter van
+                Mary-Design. Tijdens mijn studie aan de LOI hogeschool heb ik
+                mijn passie voor interieurdesign omgezet in een bloeiend
+                bedrijf.
               </p>
               <p>
-                Vanuit Curaçao werk ik persoonlijk samen met klanten die net
-                zoals jij zoeken naar een huis dat voelt als een diepe zucht —
-                niet perfect op de foto, maar perfect voor jullie leven.
+                Mijn doel bij elk project is om unieke en inspirerende ruimtes
+                te creëren die perfect aansluiten bij de wensen en
+                persoonlijkheid van mijn klanten. Ik geloof dat een goed
+                ontworpen interieur niet alleen esthetisch mooi moet zijn, maar
+                ook functioneel en comfortabel.
               </p>
               <p>
-                Of het nu gaat om één kamer of een volledige woning: mijn
-                proces is traag genoeg om echt te voelen, en strak genoeg om
-                stress weg te nemen. Samen zoeken we naar balans tussen
-                functionaliteit, licht en die zachte luxe waar je elke dag
-                weer blij van wordt.
+                Met aandacht voor detail en een creatieve aanpak streef ik
+                ernaar om elke ruimte tot leven te brengen en een plek te maken
+                waar mensen zich echt thuis voelen. Van interieuradvies en
+                materiaalkeuze tot bouwtekeningen en begeleiding tijdens de
+                realisatie: ik denk met je mee van idee tot uitvoering.
               </p>
             </div>
             <blockquote className="mt-10 rounded-card-lg border border-taupe/25 bg-linen/80 p-6 font-script text-2xl text-taupe md:text-3xl">
-              &ldquo;Tell me your story, I&apos;ll design.&rdquo;
+              &ldquo;Een goed interieur voelt niet alleen mooi, maar ook écht
+              als thuis.&rdquo;
             </blockquote>
           </MotionSection>
         </div>
